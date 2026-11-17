@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
 @theme {
+  --color-primary-50: oklch(97.687% 40% 147.9438);
+  --color-primary-100: oklch(95.3512% 40.1828% 147.9438);
+  --color-primary-200: oklch(88.5723% 41.4624% 147.9438);
+  --color-primary-300: oklch(78.014% 44.9356% 147.9438);
+  --color-primary-400: oklch(64.7098% 51.6992% 147.9438);
+  --color-primary-500: oklch(49.9619% 62.85% 147.9438);
+  --color-primary-600: oklch(35.2141% 74.0008% 147.9438);
+  --color-primary-700: oklch(21.9098% 80.7644% 147.9438);
+  --color-primary-800: oklch(11.3515% 84.2376% 147.9438);
+  --color-primary-900: oklch(4.5727% 85.5172% 147.9438);
+  --color-primary-950: oklch(2.2369% 85.7% 147.9438);
+
+  --color-element: var(--background-element);
+
+  /*add error colours
+  red-600 maybe 500/700
+  */
 }
 
 :root {
@@ -12,7 +29,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-mauve-950);
-    --background-element: var(--color-mauve-900);
+    --background-element: var(--color-mauve-800);
     --foreground: var(--color-mauve-50);
   }
 }
@@ -21,10 +38,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-nunito-sans); /*Arial, Helvetica, sans-serif;*/
-}
-
-@theme inline {
-  --color-element: var(--background-element);
 }
 
 @layer base {
@@ -36,8 +49,16 @@ body {
     font-size: var(--text-xl);
     font-weight: bold;
   }
+  h3 {
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
 }
+
 /*
+palette:
+#a8ffb9, #9fffb1, #85f799, #56d671, #00ae38, #008300, #005900, #003100, #001200, #000700, #000900
+
 skeleton colour: version of mauve
 
 Primary/Buttons: violet-500/600 teal/cyan/sky?
@@ -45,6 +66,4 @@ Primary/Buttons: violet-500/600 teal/cyan/sky?
 button "watched": darker/filled version of primary
 
 Error colour: Red 500 and 600 alway white text? switch depending on theme?
-
-third colour? cyan/sky?
 */

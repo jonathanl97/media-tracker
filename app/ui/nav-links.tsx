@@ -7,16 +7,19 @@ import {
   BookmarkIcon,
   UserCircleIcon,
   MagnifyingGlassIcon,
+  QuestionMarkCircleIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 import {
   HomeIcon as HomeIconSolid,
   BookmarkIcon as BookMarkIconSolid,
   UserCircleIcon as UserCircleIconSolid,
   MagnifyingGlassIcon as MagnifyingGlassIconSolid,
+  QuestionMarkCircleIcon as QuestionMarkCircleIconSolid,
+  InformationCircleIcon as InformationCircleIconSolid,
 } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 
-//add types?
 const links = [
   { name: "Home", href: "/home", icon: HomeIcon, activeIcon: HomeIconSolid },
   {
@@ -39,13 +42,20 @@ const links = [
   },
 ];
 
+const aboutLink = {
+  name: "About",
+  href: "/about",
+  icon: QuestionMarkCircleIcon,
+  activeIcon: QuestionMarkCircleIconSolid,
+};
+
 export default function NavLinks() {
   const pathname = usePathname();
+  let LinkIcon: typeof HomeIcon;
 
   return (
     <>
       {links.map((link) => {
-        let LinkIcon; //type??
         if (pathname == link.href) {
           LinkIcon = link.activeIcon;
         } else {
@@ -57,9 +67,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-12 cursor-pointer flex-col text-sm hover:text-lime-400",
+              "hover:text-primary-400 hidden h-12 cursor-pointer flex-col text-sm font-semibold lg:flex",
               {
-                "text-lime-400": pathname == link.href,
+                "text-primary-400": pathname == link.href,
               },
             )}
           >
@@ -68,6 +78,22 @@ export default function NavLinks() {
           </Link>
         );
       })}
+      <Link
+        href={aboutLink.href}
+        className={clsx(
+          "hover:text-primary-400 flex h-12 cursor-pointer flex-col text-sm font-semibold",
+          {
+            "text-primary-400": pathname == aboutLink.href,
+          },
+        )}
+      >
+        {pathname == aboutLink.href ? (
+          <aboutLink.activeIcon />
+        ) : (
+          <aboutLink.icon />
+        )}
+        <p>{aboutLink.name}</p>
+      </Link>
     </>
   );
 }
