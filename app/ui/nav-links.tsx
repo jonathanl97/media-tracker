@@ -21,7 +21,7 @@ import {
 import { usePathname } from "next/navigation";
 
 const links = [
-  { name: "Home", href: "/home", icon: HomeIcon, activeIcon: HomeIconSolid },
+  { name: "Home", href: "/", icon: HomeIcon, activeIcon: HomeIconSolid },
   {
     name: "Watchlist",
     href: "/watchlist",
@@ -49,6 +49,29 @@ const aboutLink = {
   activeIcon: QuestionMarkCircleIconSolid,
 };
 
+export function AboutLink() {
+  const pathname = usePathname();
+
+  return (
+    <Link
+      href={aboutLink.href}
+      className={clsx(
+        "hover:text-primary-400 flex h-12 cursor-pointer flex-col justify-center text-sm font-semibold",
+        {
+          "text-primary-400": pathname == aboutLink.href,
+        },
+      )}
+    >
+      {pathname == aboutLink.href ? (
+        <aboutLink.activeIcon className="h-10" />
+      ) : (
+        <aboutLink.icon className="h-10" />
+      )}
+      <p className="hidden lg:flex">{aboutLink.name}</p>
+    </Link>
+  );
+}
+
 export default function NavLinks() {
   const pathname = usePathname();
   let LinkIcon: typeof HomeIcon;
@@ -67,7 +90,7 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "hover:text-primary-400 hidden h-12 cursor-pointer flex-col text-sm font-semibold lg:flex",
+              "hover:text-primary-400 flex h-12 cursor-pointer flex-col text-sm font-semibold",
               {
                 "text-primary-400": pathname == link.href,
               },
@@ -78,22 +101,6 @@ export default function NavLinks() {
           </Link>
         );
       })}
-      <Link
-        href={aboutLink.href}
-        className={clsx(
-          "hover:text-primary-400 flex h-12 cursor-pointer flex-col text-sm font-semibold",
-          {
-            "text-primary-400": pathname == aboutLink.href,
-          },
-        )}
-      >
-        {pathname == aboutLink.href ? (
-          <aboutLink.activeIcon />
-        ) : (
-          <aboutLink.icon />
-        )}
-        <p>{aboutLink.name}</p>
-      </Link>
     </>
   );
 }

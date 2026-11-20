@@ -13,8 +13,8 @@ import Link from "next/link";
 //make separate card for tv shows?
 export default function MediaCard() {
   return (
-    <Link href={"/...media/page.tsx"} className="m-2">
-      <div className="bg-element relative w-40 overflow-hidden rounded-2xl lg:w-50">
+    <Link href={"/media"} className="m-2">
+      <div className="bg-element/90 relative w-40 overflow-hidden rounded-2xl lg:w-50">
         <div className="relative">
           <Image
             src={"/movieposter.jpg"}
@@ -22,7 +22,7 @@ export default function MediaCard() {
             width={300}
             height={300}
           ></Image>
-          <div className="bg-element/80 absolute bottom-0 flex w-full flex-row items-center justify-between p-1.5">
+          <div className="bg-element/90 absolute bottom-0 flex w-full flex-row items-center justify-between p-1.5">
             <h3 className="">Interstellar</h3>
             <p className="font-light">Year</p>
           </div>
